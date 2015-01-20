@@ -22,12 +22,12 @@ public class PreferenceService {
 
     public void SetPreferenceValue(String key, String value)
     {
-        preferences.edit().putString(key, value).apply();
+        preferences.edit().putString(key, value).commit();
     }
 
     public void SaveAuthPreferences(LoginResponse response)
     {
-        preferences.edit().putString(ACCESS_TOKEN, response.access_token);
-        preferences.edit().putString(TOKEN_TYPE, response.token_type);
+        preferences.edit().putString(ACCESS_TOKEN, response.access_token).apply();
+        preferences.edit().putString(TOKEN_TYPE, response.token_type).apply();
     }
 }
