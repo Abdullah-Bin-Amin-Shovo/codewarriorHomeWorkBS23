@@ -79,7 +79,10 @@ public class SignInFragment extends RoboFragment {
     private void registerUser() {
         Intent intent = new Intent(this.getActivity(), RegisterActivity.class);
         startActivity(intent);
+
     }
+
+
 
 
     private void doSignIn(){
@@ -87,9 +90,9 @@ public class SignInFragment extends RoboFragment {
         authService.getAuthToken(emailEditText.getText().toString(), passwordEditText.getText().toString(), grant_type, new Callback<LoginResponse>() {
             @Override
             public void success(LoginResponse loginResponse, Response response) {
-                String accessToken = loginResponse.access_token;
-                preferenceService.SetPreferenceValue(PreferenceService.ACCESS_TOKEN, accessToken );
-                Toast.makeText(getActivity().getApplicationContext(),"Login Success , token:"+accessToken, Toast.LENGTH_LONG).show();
+               preferenceService.SaveAuthPreferences(loginResponse);
+               Toast.makeText(getActivity().getApplicationContext(),"Login Success , token:"+loginResponse.access_token, Toast.LENGTH_LONG).show();
+               System.out.println("Access "+preferenceService.GetPreferenceValue(PreferenceService.ACCESS_TOKEN));
             }
 
             @Override
