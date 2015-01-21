@@ -1,7 +1,14 @@
 package com.bs23.codewarrior.codewarriorfirstproject.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class LoginResponse {
-    public String access_token;
-    public Long expires_in;
-    public String token_type;
+    @SerializedName("access_token")
+    public String accessToken;
+    @SerializedName("expires_in")
+    public Long expiresIn;
+    @SerializedName("token_type")
+    public String tokenType;
+    
+    
 }
