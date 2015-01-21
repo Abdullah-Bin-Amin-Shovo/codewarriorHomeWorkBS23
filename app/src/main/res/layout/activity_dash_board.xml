@@ -23,7 +23,26 @@
         android:id="@+id/buttonEditProfile"
         android:layout_below="@+id/textViewTitle"
         android:layout_centerHorizontal="true"
-        android:visibility="visible"/>
+        android:visibility="visible"
+        android:layout_marginBottom="40dp"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Share It"
+        android:id="@+id/buttonShare"
+        android:layout_below="@+id/buttonEditProfile"
+        android:layout_centerHorizontal="true"
+        android:visibility="visible"
+        android:layout_marginBottom="40dp"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Out"
+        android:id="@+id/buttonLogout"
+        android:layout_below="@+id/buttonShare"
+        android:layout_centerHorizontal="true"
+        android:visibility="visible"
+        android:layout_marginBottom="40dp"/>
 
 </RelativeLayout>
