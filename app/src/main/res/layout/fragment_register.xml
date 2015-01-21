@@ -40,25 +40,14 @@
         android:hint="password"
         android:inputType="textPassword" />
 
-    <EditText
-        android:id="@+id/confrimPasswordEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/passwordEditText"
-        android:layout_centerHorizontal="true"
-        android:ems="10"
-        android:hint="retype password"
-        android:inputType="textPassword"
-        android:layout_marginBottom="15dp"/>
-
     <Button
         android:id="@+id/registerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/confrimPasswordEditText"
         android:layout_centerHorizontal="true"
         android:text="Register"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:layout_below="@+id/passwordEditText" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

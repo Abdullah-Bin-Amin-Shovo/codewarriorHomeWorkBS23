@@ -42,9 +42,7 @@ public class RegisterActivity extends RoboActivity {
     @InjectView(R.id.passwordEditText)
     EditText passwordEditText;
     
-    @InjectView(R.id.confrimPasswordEditText)
-    EditText confrimPasswordEditText;
-    
+
     @InjectView(R.id.registerButton)
     Button registerButton;
 
@@ -70,7 +68,7 @@ public class RegisterActivity extends RoboActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                user = new User(emailEditText.getText().toString(), passwordEditText.getText().toString(), confrimPasswordEditText.getText().toString());
+                user = new User(emailEditText.getText().toString(), passwordEditText.getText().toString(), passwordEditText.getText().toString());
                 registerUser();
                 System.out.println("Clicked");
             }
