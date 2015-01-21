@@ -31,22 +31,22 @@ public class SignInFragment extends RoboFragment {
 
     @InjectView(R.id.emailEditText)
     private EditText emailEditText;
-    
+
     @InjectView(R.id.passwordEditText)
     private EditText passwordEditText;
-    
+
     @InjectView(R.id.signInButton)
     private Button signInButton;
-    
+
     @InjectView(R.id.newAccountTextView)
     private TextView newAccountTextView;
-    
+
     @Inject
     private AuthService authService;
-    
+
     @Inject
     PreferenceService preferenceService;
-    
+
     private User user;
 
     @Override
@@ -57,6 +57,10 @@ public class SignInFragment extends RoboFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if(preferenceService.isSignedIn(PreferenceService.IS_SIGNIN)){
+            
+            goToDashBoard();
+        }
         signInButton.setOnClickListener(clickListener);
         newAccountTextView.setOnClickListener(clickListener);
     }
@@ -81,18 +85,22 @@ public class SignInFragment extends RoboFragment {
         startActivity(intent);
 
     }
+    private void goToDashBoard(){
+
+        startActivity(new Intent(getActivity(), DashBoardActivity.class));
+    }
 
 
-
-
-    private void doSignIn(){
+    private void doSignIn() {
         String grant_type = "password";
         authService.getAuthToken(emailEditText.getText().toString(), passwordEditText.getText().toString(), grant_type, new Callback<LoginResponse>() {
             @Override
             public void success(LoginResponse loginResponse, Response response) {
-               preferenceService.SaveAuthPreferences(loginResponse);
-               Toast.makeText(getActivity().getApplicationContext(),"Login Success , token:"+loginResponse.accessToken, Toast.LENGTH_LONG).show();
-               System.out.println("Access "+preferenceService.GetPreferenceValue(PreferenceService.ACCESS_TOKEN));
+                preferenceService.SaveAuthPreferences(loginResponse);
+                Toast.makeText(getActivity().getApplicationContext(), "Login Success , token:" + loginResponse.accessToken, Toast.LENGTH_LONG).show();
+                System.out.println("Access " + preferenceService.GetPreferenceValue(PreferenceService.ACCESS_TOKEN));
+                goToDashBoard();
+
             }
 
             @Override
@@ -100,7 +108,7 @@ public class SignInFragment extends RoboFragment {
                 RetrofitError e = error;
 
             }
-        } );
-        Toast.makeText(getActivity().getApplicationContext(),"Sign in Clicked", Toast.LENGTH_LONG).show();
+        });
+        Toast.makeText(getActivity().getApplicationContext(), "Sign in Clicked", Toast.LENGTH_LONG).show();
     }
 }

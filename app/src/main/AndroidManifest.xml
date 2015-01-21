@@ -16,12 +16,15 @@
         <activity
             android:name=".SignInActivity"
             android:label="@string/title_activity_main" >
-            <!--<intent-filter>
+
+            <!--
+            <intent-filter>
                 &lt;!&ndash;<action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.DEFAULT" />&ndash;&gt;
-            </intent-filter>-->
+            </intent-filter>
+            -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,7 +34,14 @@
         <activity
             android:name=".RegisterActivity"
             android:label="@string/title_activity_register" >
-           
+        </activity>
+        <activity
+            android:name=".DashBoardActivity"
+            android:label="@string/title_activity_dash_board" >
+        </activity>
+        <activity
+            android:name=".UpdateProfileActivity"
+            android:label="@string/title_activity_dash_board" >
         </activity>
     </application>
 

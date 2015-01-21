@@ -13,16 +13,16 @@ public class UserProfile {
     public String lastName;
 
     @SerializedName("ProfilePic")
-    public  String profilePic;
+    public  String email;
 
     @SerializedName("Address")
     public String address;
 
-    public UserProfile(int id, String firstName, String lastName, String profilePic, String address) {
+    public UserProfile(int id, String firstName, String lastName, String email, String address) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.profilePic = profilePic;
+        this.email = email;
         this.address = address;
     }
 
@@ -50,12 +50,12 @@ public class UserProfile {
         this.lastName = lastName;
     }
 
-    public String getProfilePic() {
-        return profilePic;
+    public String getEmail() {
+        return email;
     }
 
-    public void setProfilePic(String profilePic) {
-        this.profilePic = profilePic;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getAddress() {
