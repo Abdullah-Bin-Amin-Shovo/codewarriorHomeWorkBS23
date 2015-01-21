@@ -39,16 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Forgot your password?"
-        android:id="@+id/forgotPassTextView"
-        android:layout_gravity="center_horizontal"
-        android:padding="10dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Do not have an account? Sign Up"
+        android:text="Do not have an account? Tap here to Sign Up"
         android:id="@+id/newAccountTextView"
         android:layout_gravity="center_horizontal"
         android:padding="10dp" />
