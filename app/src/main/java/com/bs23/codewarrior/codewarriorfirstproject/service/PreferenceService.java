@@ -30,4 +30,10 @@ public class PreferenceService {
         preferences.edit().putString(ACCESS_TOKEN, response.access_token).apply();
         preferences.edit().putString(TOKEN_TYPE, response.token_type).apply();
     }
+
+    public void ResetAuthPreferences()
+    {
+        preferences.edit().putString(ACCESS_TOKEN, "").apply();
+        preferences.edit().putString(TOKEN_TYPE, "").apply();
+    }
 }
