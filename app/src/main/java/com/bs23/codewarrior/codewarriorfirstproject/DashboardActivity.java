@@ -74,7 +74,7 @@ public class DashboardActivity extends RoboActivity {
             @Override
             public void onClick(View v) {
                 preferenceService.ResetAuthPreferences();
-                startActivity(new Intent(DashBoardActivity.this, SignInActivity.class));
+                startActivity(new Intent(DashboardActivity.this, SignInActivity.class));
             }
         });
         
