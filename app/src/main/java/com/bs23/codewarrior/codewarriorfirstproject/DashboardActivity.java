@@ -26,7 +26,7 @@ import roboguice.inject.ContentView;
 import roboguice.inject.InjectView;
 
 @ContentView(R.layout.activity_dash_board)
-public class DashBoardActivity extends RoboActivity {
+public class DashboardActivity extends RoboActivity {
 
     @Inject
     PreferenceService preferenceService;
@@ -51,7 +51,7 @@ public class DashBoardActivity extends RoboActivity {
         
         if(!preferenceService.isSignedIn(PreferenceService.IS_SIGNIN)){
             
-            startActivity(new Intent(DashBoardActivity.this, SignInActivity.class));
+            startActivity(new Intent(DashboardActivity.this, SignInActivity.class));
             
         }
         getUserData();
@@ -59,7 +59,7 @@ public class DashBoardActivity extends RoboActivity {
         buttonEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DashBoardActivity.this, UpdateProfileActivity.class));
+                startActivity(new Intent(DashboardActivity.this, UpdateProfileActivity.class));
             }
         });
         
@@ -74,7 +74,7 @@ public class DashBoardActivity extends RoboActivity {
             @Override
             public void onClick(View v) {
                 preferenceService.ResetAuthPreferences();
-                startActivity(new Intent(DashBoardActivity.this, SignInActivity.class));
+                startActivity(new Intent(DashboardActivity.this, SignInActivity.class));
             }
         });
         
