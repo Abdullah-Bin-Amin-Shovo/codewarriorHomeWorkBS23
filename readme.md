@@ -1,2 +1,1 @@
-#this is the first project
-feature tests
+# Code Warriors' Challenge 2015 Mobile Track Home work project
