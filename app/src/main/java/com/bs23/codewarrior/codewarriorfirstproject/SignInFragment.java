@@ -51,7 +51,7 @@ public class SignInFragment extends RoboFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_sign_in, container);
+        return inflater.inflate(R.layout.activity_sign_in, container);
     }
 
     @Override
@@ -98,7 +98,7 @@ public class SignInFragment extends RoboFragment {
             public void success(LoginResponse loginResponse, Response response) {
                 preferenceService.SaveAuthPreferences(loginResponse);
                 Toast.makeText(getActivity().getApplicationContext(), "Login Success , token:" + loginResponse.accessToken, Toast.LENGTH_LONG).show();
-                System.out.println("Access " + preferenceService.GetPreferenceValue(PreferenceService.ACCESS_TOKEN));
+                //System.out.println("Access " + preferenceService.GetPreferenceValue(PreferenceService.ACCESS_TOKEN));
                 goToDashBoard();
 
             }

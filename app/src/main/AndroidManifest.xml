@@ -36,12 +36,14 @@
             android:label="@string/title_activity_register" >
         </activity>
         <activity
+
             android:name=".DashBoardActivity"
             android:label="@string/title_activity_dash_board" >
         </activity>
         <activity
             android:name=".UpdateProfileActivity"
             android:label="@string/title_activity_dash_board" >
+          
         </activity>
     </application>
 
