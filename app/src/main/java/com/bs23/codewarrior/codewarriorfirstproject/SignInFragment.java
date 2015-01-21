@@ -87,7 +87,7 @@ public class SignInFragment extends RoboFragment {
     }
     private void goToDashBoard(){
 
-        startActivity(new Intent(getActivity(), DashBoardActivity.class));
+        startActivity(new Intent(getActivity(), DashboardActivity.class));
     }
 
 
