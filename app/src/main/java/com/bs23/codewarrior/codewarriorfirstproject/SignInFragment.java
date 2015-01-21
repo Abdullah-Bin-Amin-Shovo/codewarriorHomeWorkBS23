@@ -51,7 +51,7 @@ public class SignInFragment extends RoboFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_sign_in, container);
+        return inflater.inflate(R.layout.activity_sign_in, container);
     }
 
     @Override

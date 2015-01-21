@@ -84,7 +84,7 @@ public class SignInActivity extends RoboActivity {
     }
 
     private void gotoDashboard() {
-        Intent intent = new Intent(context, DashboardActivity.class);
+        Intent intent = new Intent(context, DashBoardActivity.class);
         startActivity(intent);
     }
 
