@@ -1,15 +1,12 @@
 package com.bs23.codewarrior.codewarriorfirstproject;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,17 +20,18 @@ import com.google.inject.Inject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 import retrofit.mime.TypedInput;
-import roboguice.activity.RoboActionBarActivity;
 import roboguice.activity.RoboActivity;
 import roboguice.inject.ContentView;
 import roboguice.inject.InjectView;
 
-@ContentView(R.layout.fragment_register)
+@ContentView(R.layout.activity_register)
 public class RegisterActivity extends RoboActivity {
     
     @InjectView(R.id.myEmailEditText)
@@ -58,13 +56,14 @@ public class RegisterActivity extends RoboActivity {
         
     private User user;
 
-    
+    private Context context;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+        context = getApplicationContext();
+
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,69 +82,87 @@ public class RegisterActivity extends RoboActivity {
     }
 
     private void gotoLogin() {
-        Intent intent = new Intent(this.getApplicationContext(), SignInActivity.class);
-        startActivity(intent);
+        finish();
     }
 
     public void registerUser() {
 
-        authService.registerUser(user, new Callback<User>() {
-            @Override
-            public void success(User user, Response response) {
+        if(isValidInput()) {
 
-                System.out.println("success");
-                Toast.makeText(getApplicationContext(),"User Registered; status="+response.getStatus(),Toast.LENGTH_LONG).show();
-            }
+            final ProgressDialog progress = ProgressDialog.show(this, "Please wait",
+                    "Signing up...", true);
 
-            @Override
-            public void failure(RetrofitError error) {
-                RetrofitError e = error;
-                TypedInput body = e.getResponse().getBody();
-                try {
-                    BufferedReader reader = null;
-                    try {
-                        reader = new BufferedReader(new InputStreamReader(body.in()));
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
-                    StringBuilder out = new StringBuilder();
-                    String newLine = System.getProperty("line.separator");
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        out.append(line);
-                        out.append(newLine);
-                    }
-
-                    // Prints the correct String representation of body.
-                    System.out.println(out);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
+            authService.registerUser(user, new Callback<User>() {
+                @Override
+                public void success(User user, Response response) {
+                    progress.dismiss();
+                    Toast.makeText(context, "Sign up successful. Please login to continue", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
-            }
-        });
+
+                @Override
+                public void failure(RetrofitError error) {
+                    progress.dismiss();
+                    RetrofitError e = error;
+                    TypedInput body = e.getResponse().getBody();
+                    try {
+                        BufferedReader reader = null;
+                        try {
+                            reader = new BufferedReader(new InputStreamReader(body.in()));
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
+                        StringBuilder out = new StringBuilder();
+                        String newLine = System.getProperty("line.separator");
+                        String line;
+                        while ((line = reader.readLine()) != null) {
+                            out.append(line);
+                            out.append(newLine);
+                        }
+
+                        // Prints the correct String representation of body.
+                        System.out.println(out);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+        }
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_register, menu);
+    private boolean isValidInput(){
+        String email = emailEditText.getText().toString();
+        if (!isValidEmail(email)) {
+            emailEditText.setError("Invalid Email");
+            return false;
+        }
+
+        final String pass = passwordEditText.getText().toString();
+        if (!isValidPassword(pass)) {
+            passwordEditText.setError("Password is too short");
+            return false;
+        }
+
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    // validating email id
+    private boolean isValidEmail(String email) {
+        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    // validating password with retype password
+    private boolean isValidPassword(String pass) {
+        if (pass != null && pass.length() >= 6) {
             return true;
         }
-
-        return super.onOptionsItemSelected(item);
+        return false;
     }
 
 
