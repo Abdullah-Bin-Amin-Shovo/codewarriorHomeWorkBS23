@@ -51,7 +51,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_weight="0.75"
+            android:layout_weight="0.25"
             android:text="Phone" />
 
         <LinearLayout
@@ -62,9 +62,10 @@
 
             <EditText
                 android:id="@+id/txtPhone"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:ems="5" />
+                android:layout_weight="0.75"
+                android:ems="10" />
         </LinearLayout>
     </LinearLayout>
 

@@ -98,7 +98,7 @@ public class SignInFragment extends RoboFragment {
             public void success(LoginResponse loginResponse, Response response) {
                 preferenceService.SaveAuthPreferences(loginResponse);
                 Toast.makeText(getActivity().getApplicationContext(), "Login Success , token:" + loginResponse.accessToken, Toast.LENGTH_LONG).show();
-                System.out.println("Access " + preferenceService.GetPreferenceValue(PreferenceService.ACCESS_TOKEN));
+                //System.out.println("Access " + preferenceService.GetPreferenceValue(PreferenceService.ACCESS_TOKEN));
                 goToDashBoard();
 
             }

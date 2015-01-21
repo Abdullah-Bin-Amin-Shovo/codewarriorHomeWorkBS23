@@ -37,6 +37,12 @@ public class DashBoardActivity extends RoboActivity {
     @InjectView (R.id.buttonEditProfile)
     private Button buttonEditProfile;
     
+    @InjectView (R.id.buttonShare)
+    private Button buttonShare;
+    
+    @InjectView (R.id.buttonLogout)
+    private Button buttonLogout;
+    
     private UserProfile userProfileData;
     
     @Override
@@ -57,8 +63,29 @@ public class DashBoardActivity extends RoboActivity {
             }
         });
         
+        buttonShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shareThis();
+            }
+        });
+        
+        buttonLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                preferenceService.ResetAuthPreferences();
+                startActivity(new Intent(DashBoardActivity.this, SignInActivity.class));
+            }
+        });
         
         
+    }
+
+    private void shareThis() {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "This is simple Share");
+        startActivity(Intent.createChooser(shareIntent, "Share"));
     }
 
     private void getUserData() {
